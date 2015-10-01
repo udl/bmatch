@@ -1,2 +1,2 @@
 #!/bin/bash
-go build -buildmode=c-shared -o levenshtein.so levenshtein.go
+go build -buildmode=c-shared -o similarities.so similarities.go

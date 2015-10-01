@@ -1,4 +1,41 @@
-// taken and slightly adjusted to compile with exported function
+package main
+
+import (
+	"C"
+)
+
+type BiGram struct{ a, b rune }
+
+func CreateBiGrams(s string) map[BiGram]bool {
+	result := make(map[BiGram]bool)
+	end := rune(0)
+	for i, c := range s {
+		if i > 0 {
+			result[BiGram{end, c}] = true
+		}
+		end = c
+	}
+	return result
+}
+
+//export dice_similarity
+func dice_similarity(s1in, s2in *C.char) float32 {
+	s1 := C.GoString(s1in)
+	s2 := C.GoString(s2in)
+	bigram1, bigram2 := CreateBiGrams(s1), CreateBiGrams(s2)
+	// ruby only supports float32
+	var numIntersects float32
+	for first, _ := range bigram1 {
+		if bigram2[first] {
+			numIntersects += 1
+		}
+	}
+	return 2.0 * numIntersects / float32(len(bigram1)+len(bigram2))
+}
+
+func main() {}
+
+// all of the following is taken and slightly adjusted to compile with exported function
 // from https://github.com/arbovm/levenshtein/blob/master/levenshtein.go
 
 //Copyright (c) 2015, Arbo von Monkiewitsch All rights reserved.
@@ -30,16 +67,10 @@
 //(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 //OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-package main
-
-import (
-	"C"
-)
-
 // Calculate the Levenshtein distance between two strings
 
-//export distance
-func distance(s1in, s2in *C.char) int {
+//export levenshtein_distance
+func levenshtein_distance(s1in, s2in *C.char) int {
 	s1 := C.GoString(s1in)
 	s2 := C.GoString(s2in)
 	var cost, lastdiag, olddiag int
@@ -82,5 +113,3 @@ func min(a, b, c int) int {
 	}
 	return c
 }
-
-func main() {}
