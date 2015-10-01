@@ -43,8 +43,8 @@ func distance(s1in, s2in *C.char) int {
 	s1 := C.GoString(s1in)
 	s2 := C.GoString(s2in)
 	var cost, lastdiag, olddiag int
-	len_s1 := len(s1)
-	len_s2 := len(s2)
+	len_s1 := len([]rune(s1))
+	len_s2 := len([]rune(s2))
 
 	column := make([]int, len_s1+1)
 
