@@ -5,6 +5,7 @@ Gem::Specification.new do |s|
   s.name = "bmatch"
   s.version = Bmatch::VERSION
   s.authors = ["Udo Groebner"]
+  s.email = "udo.groebner@crealytics.com"
   s.homepage = "https://github.com/udl/bmatch"
   s.licenses = ["MIT"]
   s.summary = "Library for string similarities."
@@ -12,11 +13,12 @@ Gem::Specification.new do |s|
   s.rubygems_version = ">= 1.3"
   s.required_ruby_version = ">= 1.9.3"
   s.platform    = Gem::Platform::RUBY
+  s.extensions = ['ext/extconf.rb']
 
   s.files        = `git ls-files`.split("\n")
   s.require_path = 'lib'
 
-  s.add_dependency 'ffi'
-  s.add_development_dependency 'pry'
-  s.add_development_dependency 'rspec'
+  s.add_dependency 'ffi', '~> 1.9'
+  s.add_development_dependency 'pry', '~> 0.10'
+  s.add_development_dependency 'rspec', '~> 3.3'
 end
