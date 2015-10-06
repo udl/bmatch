@@ -15,8 +15,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.extensions = ['ext/extconf.rb']
 
-  s.files        = `git ls-files`.split("\n")
-  s.require_path = 'lib'
+  s.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  s.require_paths = ["lib"]
 
   s.add_dependency 'ffi', '~> 1.9'
   s.add_development_dependency 'pry', '~> 0.10'
