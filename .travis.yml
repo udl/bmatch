@@ -4,4 +4,4 @@ services:
 before_install:
     - docker build -t udl/bmatch .
 script:
-  - docker run udl/bmatch
+  - ./tests.sh

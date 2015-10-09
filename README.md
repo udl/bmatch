@@ -1,9 +1,7 @@
 # bmatch
 
-[![Build
-Status](https://semaphoreci.com/api/v1/projects/d08731e1-78d1-4bfa-9cd5-3789d02e369d/558462/badge.svg)](https://semaphoreci.com/udo-groebner/bmatch)
-[![Gem
-Version](https://badge.fury.io/rb/bmatch.svg)](http://badge.fury.io/rb/bmatch)
+[![Build Status](https://travis-ci.org/udl/bmatch.svg)](https://travis-ci.org/udl/bmatch)
+[![Gem Version](https://badge.fury.io/rb/bmatch.svg)](http://badge.fury.io/rb/bmatch)
 
 Approximate string matching library (with native bindings)
 
@@ -18,6 +16,12 @@ Levenshtein implementation taken from: https://github.com/arbovm/levenshtein
 ## Why
 
 Because amatch unfortunately produces segfaults. I hope golang-to-C doesn't do that.
+
+## Issues
+
+* The build keeps segfaulting on travis-ci after the tests were green.
+  (see also
+http://stackoverflow.com/questions/15879993/writing-a-ruby-extension-in-go-golang)
 
 ## Usage
 
